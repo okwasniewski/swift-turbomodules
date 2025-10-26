@@ -1,0 +1,19 @@
+{
+  "name": "react-native-local-storage",
+  "version": "0.0.0",
+  "description": "Local Storage implementation",
+  "main": "src/index",
+  "codegenConfig": {
+    "name": "LocalStorageSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "author": " <> ()",
+  "license": "UNLICENSED",
+  "homepage": "#readme",
+  "create-react-native-library": {
+    "languages": "kotlin-objc",
+    "type": "turbo-module",
+    "version": "0.54.7"
+  }
+}
