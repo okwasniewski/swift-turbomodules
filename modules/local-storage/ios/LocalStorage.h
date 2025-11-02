@@ -1,5 +1,5 @@
 #import <LocalStorageSpec/LocalStorageSpec.h>
 
-@interface LocalStorage : NSObject <NativeLocalStorageSpec>
+@interface LocalStorage : NativeLocalStorageSpecBase <NativeLocalStorageSpec>
 
 @end

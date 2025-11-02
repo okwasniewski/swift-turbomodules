@@ -6,8 +6,19 @@ import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import LocalStorage from "react-native-local-storage";
+import { useEffect } from "react";
 
 export default function HomeScreen() {
+  useEffect(() => {
+    const subscription = LocalStorage?.onKeyAdded((pair) =>
+      alert(`New key added: ${pair.key} with value: ${pair.value}`),
+    );
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -29,6 +40,14 @@ export default function HomeScreen() {
           }}
         >
           <ThemedText>Press to store greeting</ThemedText>
+        </Pressable>
+
+        <Pressable
+          onPress={async () => {
+            LocalStorage.setItem("Hello Expo!", "greeting" + Math.random());
+          }}
+        >
+          <ThemedText>Press to store random greeting</ThemedText>
         </Pressable>
 
         <Pressable

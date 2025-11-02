@@ -14,7 +14,10 @@
 {
   self = [super init];
   if (self) {
-    _localStorage = [[NativeLocalStorage alloc] init];
+    __weak LocalStorage* weakSelf = self;
+    _localStorage = [[NativeLocalStorage alloc] initOnKeyAdded:^(NSDictionary * _Nonnull values) {
+      [weakSelf emitOnKeyAdded:values];
+    }];
   }
   return self;
 }
