@@ -23,6 +23,9 @@ export default function HomeScreen() {
         <HelloWave />
       </ThemedView>
       <ThemedView>
+        <ThemedText>
+          Storage Key: {LocalStorage.getConstants().storageKey}
+        </ThemedText>
         <Pressable
           onPress={async () => {
             LocalStorage.setItem("Hello Expo!", "greeting");

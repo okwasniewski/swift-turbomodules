@@ -1,7 +1,8 @@
 import Foundation
 
 @objcMembers public class NativeLocalStorage: NSObject {
-  let userDefaults = UserDefaults(suiteName: "local-storage")
+  public static let storageKey = "local-storage"
+  let userDefaults = UserDefaults(suiteName: storageKey)
   
   public func getItem(for key: String) -> String? {
     return userDefaults?.string(forKey: key)

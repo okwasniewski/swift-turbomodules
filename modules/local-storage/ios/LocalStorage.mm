@@ -8,6 +8,7 @@
 
 @implementation LocalStorage {
   NativeLocalStorage *_localStorage;
+  facebook::react::ModuleConstants<JS::NativeLocalStorage::Constants> _constants;
 }
 
 - (instancetype)init
@@ -15,6 +16,10 @@
   self = [super init];
   if (self) {
     _localStorage = [[NativeLocalStorage alloc] init];
+    
+    _constants = facebook::react::typedConstants<JS::NativeLocalStorage::Constants>({
+      .storageKey = [NativeLocalStorage storageKey]
+    });
   }
   return self;
 }
@@ -33,6 +38,18 @@
 
 - (void)clear {
   [_localStorage clear];
+}
+
+- (facebook::react::ModuleConstants<JS::NativeLocalStorage::Constants>)getConstants {
+  return _constants;
+}
+
+- (facebook::react::ModuleConstants<JS::NativeLocalStorage::Constants>)constantsToExport {
+  return (facebook::react::ModuleConstants<JS::NativeLocalStorage::Constants>)[self getConstants];
+}
+
+- (nonnull NSDictionary *)getMyConstants { 
+  return @{};
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
