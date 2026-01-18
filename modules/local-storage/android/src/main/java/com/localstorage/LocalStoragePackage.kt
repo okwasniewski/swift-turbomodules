@@ -9,11 +9,11 @@ import java.util.HashMap
 
 class LocalStoragePackage : BaseReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-    return if (name == LocalStorageModule.NAME) {
+    return (if (name == LocalStorageModule.NAME) {
       LocalStorageModule(reactContext)
     } else {
       null
-    }
+    }) as NativeModule?
   }
 
   override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
